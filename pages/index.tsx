@@ -1,9 +1,7 @@
 import {
   Typography,
   Box,
-  Card,
   Container,
-  Button,
   styled
 } from '@mui/material';
 import type { ReactElement } from 'react';
@@ -12,17 +10,16 @@ import BaseLayout from 'src/layouts/BaseLayout';
 import Link from 'src/components/Link';
 import Head from 'next/head';
 
-import Logo from 'src/components/LogoSign';
 import Hero from 'src/content/Overview/Hero';
+import PageHeader from '@/content/Overview/settings/PageHeader';
 
-const HeaderWrapper = styled(Card)(
-  ({ theme }) => `
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: ${theme.spacing(10)};
-  margin-bottom: ${theme.spacing(10)};
-`
+const HeroWrapper = styled(Box)(
+  ({ theme }) => ({
+    marginTop:  theme.spacing(10),
+    [theme.breakpoints.up("sm")]: {
+      marginTop:  theme.spacing(14)
+    },
+  })
 );
 
 const OverviewWrapper = styled(Box)(
@@ -40,32 +37,10 @@ function Overview() {
       <Head>
         <title>Tokyo Free Black NextJS Typescript Admin Dashboard</title>
       </Head>
-      <HeaderWrapper>
-        <Container maxWidth="lg">
-          <Box display="flex" alignItems="center">
-            <Logo />
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
-              flex={1}
-            >
-              <Box />
-              <Box>
-                <Button
-                  component={Link}
-                  href="/dashboards/tasks"
-                  variant="contained"
-                  sx={{ ml: 2 }}
-                >
-                  Live Preview
-                </Button>
-              </Box>
-            </Box>
-          </Box>
-        </Container>
-      </HeaderWrapper>
-      <Hero />
+      <PageHeader />
+      <HeroWrapper>
+        <Hero />
+      </HeroWrapper>
       <Container maxWidth="lg" sx={{ mt: 8 }}>
         <Typography textAlign="center" variant="subtitle1">
           Crafted by{' '}
